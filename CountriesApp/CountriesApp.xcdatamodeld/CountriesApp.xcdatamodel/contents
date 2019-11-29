@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14492.1" systemVersion="18G87" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="CountryModel" representedClassName="[String].CountryModel" syncable="YES">
+    <entity name="CountryModel" representedClassName=".CountryModel" syncable="YES">
         <attribute name="alpha2Code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="alpha3Code" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="altSpellings" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="area" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="altSpellings" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+        <attribute name="area" optional="YES" attributeType="Transformable" customClassName="NSObject" syncable="YES"/>
         <attribute name="borders" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
         <attribute name="callingCodes" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
         <attribute name="capital" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cioc" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="currencies" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="currencies" optional="YES" attributeType="Transformable" customClassName="[[String:String]]" syncable="YES"/>
         <attribute name="demonym" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="flag" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="gini" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gini" optional="YES" attributeType="Transformable" customClassName="NSNumber" syncable="YES"/>
         <attribute name="languages" optional="YES" attributeType="Transformable" customClassName="[[String:String]]" syncable="YES"/>
-        <attribute name="latlng" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+        <attribute name="latlng" optional="YES" attributeType="Transformable" customClassName="[Double]" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nativeName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="numericCode" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="population" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="population" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="NSNumber" syncable="YES"/>
         <attribute name="region" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="regionalBlocs" optional="YES" attributeType="Transformable" customClassName="[[String:Any]]" syncable="YES"/>
         <attribute name="subregion" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,6 +27,6 @@
         <attribute name="translations" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CountryModel" positionX="-63" positionY="-18" width="128" height="403"/>
+        <element name="CountryModel" positionX="-63" positionY="-18" width="128" height="405"/>
     </elements>
 </model>

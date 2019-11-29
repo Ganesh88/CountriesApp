@@ -26,7 +26,9 @@ class CountryListTableViewCell: UITableViewCell {
     
     func configureCell(countryModel: CountryModel) {
         countryNameLabel.text = countryModel.name
-        flagImageView.sd_setImage(with: URL(string: countryModel.flag!), placeholderImage: nil)
+        print("name",countryModel.name)
+        print("population",countryModel.population?.doubleValue)
+        //flagImageView.sd_setImage(with: URL(string: countryModel.flag!), placeholderImage: nil)
     }
 
 }

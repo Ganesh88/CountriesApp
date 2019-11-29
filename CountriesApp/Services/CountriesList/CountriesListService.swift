@@ -9,6 +9,8 @@
 import Foundation
 import PromiseKit
 
+
+
 class CountriesListService: CountriesListProtocol {
     func getCountriesListForSearchString(searchString: String) -> Promise<[CountryModel]> {
         return Promise {
@@ -41,13 +43,12 @@ class CountriesListService: CountriesListProtocol {
 //                        guard let jsonDict = jsonResponse as? [[String : Any]]  else {
 //                            return
 //                        }
+                        /*let decoder = JSONDecoder()
                         let backgoundContext = Utility.instance.appDelegate.persistentContainer.newBackgroundContext()
-                        let decoder = JSONDecoder()
                         if let context = CodingUserInfoKey.context {
                             decoder.userInfo[context] = backgoundContext
-                        }
-                        var countriesArray = [CountryModel]()
-                        countriesArray = try JSONDecoder().decode([CountryModel].self, from: responseData!)
+                        }*/
+                        let countriesArray = try JSONDecoder().decode([CountryModel].self, from: responseData!)
                         seal.fulfill(countriesArray)
                         
                     } catch let parsingError {

@@ -54,7 +54,7 @@ class CountriesTableViewController: UIViewController {
 
 }
 
-extension CountriesTableViewController {
+extension CountriesTableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return countriesArrray.count

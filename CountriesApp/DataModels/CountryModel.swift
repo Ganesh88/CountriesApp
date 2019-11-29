@@ -12,6 +12,7 @@ import CoreData
 class CountryModel: NSManagedObject, Codable {
     
     @NSManaged public var name: String?
+    @NSManaged public var population: NSNumber?
     @NSManaged public var topLevelDomain: [String]?
     @NSManaged public var alpha2Code: String?
     @NSManaged public var alpha3Code: String?
@@ -20,11 +21,10 @@ class CountryModel: NSManagedObject, Codable {
     @NSManaged public var altSpellings: [String]?
     @NSManaged public var region: String?
     @NSManaged public var subregion: String?
-    @NSManaged public var population: Int?
-    @NSManaged public var latlng: [Int]?
+    @NSManaged public var latlng: [Double]?
     @NSManaged public var demonym: String?
-    @NSManaged public var area: String?
-    @NSManaged public var gini: String?
+    @NSManaged public var area: NSNumber?
+    @NSManaged public var gini: NSNumber?
     @NSManaged public var timezones: [String]?
     @NSManaged public var borders: [String]?
     @NSManaged public var nativeName: String?
@@ -33,11 +33,12 @@ class CountryModel: NSManagedObject, Codable {
     @NSManaged public var languages: [[String:String]]?
     @NSManaged public var translations: [String]?
     @NSManaged public var flag: String?
-    //@NSManaged public var regionalBlocs: [[String:Any]]?
+    @NSManaged public var regionalBlocs: [[String:Any]]?
     @NSManaged public var cioc: String?
     
     enum CodingKeys: String, CodingKey {
         case name
+        case population
         case topLevelDomain
         case alpha2Code
         case alpha3Code
@@ -46,7 +47,6 @@ class CountryModel: NSManagedObject, Codable {
         case altSpellings
         case region
         case subregion
-        case population
         case latlng
         case demonym
         case area
@@ -59,7 +59,7 @@ class CountryModel: NSManagedObject, Codable {
         case languages
         case translations
         case flag
-       // case regionalBlocs
+        case regionalBlocs
         case cioc
     }
     
@@ -73,6 +73,7 @@ class CountryModel: NSManagedObject, Codable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.population = NSNumber(value: try container.decodeIfPresent(Double.self, forKey: .population) ?? 0.0)
         self.topLevelDomain = try container.decodeIfPresent([String].self, forKey: .topLevelDomain)
         self.alpha2Code = try container.decodeIfPresent(String.self, forKey: .alpha2Code)
         self.alpha3Code = try container.decodeIfPresent(String.self, forKey: .alpha3Code)
@@ -81,11 +82,10 @@ class CountryModel: NSManagedObject, Codable {
         self.altSpellings = try container.decodeIfPresent([String].self, forKey: .altSpellings)
         self.region = try container.decodeIfPresent(String.self, forKey: .region)
         self.subregion = try container.decodeIfPresent(String.self, forKey: .name)
-        self.population = try container.decodeIfPresent(Double.self, forKey: .population)
-        self.latlng = try container.decodeIfPresent([Int].self, forKey: .latlng)
+        self.latlng = try container.decodeIfPresent([Double].self, forKey: .latlng)
         self.demonym = try container.decodeIfPresent(String.self, forKey: .demonym)
-        self.area = try container.decodeIfPresent(String.self, forKey: .area)
-        self.gini = try container.decodeIfPresent(String.self, forKey: .gini)
+        self.area = NSNumber(value: try container.decodeIfPresent(Double.self, forKey: .area) ?? 0.0)
+        self.gini = NSNumber(value: try container.decodeIfPresent(Double.self, forKey: .gini) ?? 0.0)
         self.timezones = try container.decodeIfPresent([String].self, forKey: .timezones)
         self.borders = try container.decodeIfPresent([String].self, forKey: .borders)
         self.nativeName = try container.decodeIfPresent(String.self, forKey: .nativeName)
@@ -102,6 +102,7 @@ class CountryModel: NSManagedObject, Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
+        try container.encode(population?.doubleValue, forKey: .population)
         try container.encode(topLevelDomain, forKey: .topLevelDomain)
         try container.encode(alpha2Code, forKey: .alpha2Code)
         try container.encode(alpha3Code, forKey: .alpha3Code)
@@ -110,11 +111,11 @@ class CountryModel: NSManagedObject, Codable {
         try container.encode(altSpellings, forKey: .altSpellings)
         try container.encode(region, forKey: .region)
         try container.encode(subregion, forKey: .subregion)
-//        try container.encode(population, forKey: .population)
+        
         try container.encode(latlng, forKey: .latlng)
         try container.encode(demonym, forKey: .demonym)
-        try container.encode(area, forKey: .area)
-        try container.encode(gini, forKey: .gini)
+        try container.encode(area?.doubleValue, forKey: .area)
+        try container.encode(gini?.doubleValue, forKey: .gini)
         try container.encode(timezones, forKey: .timezones)
         try container.encode(borders, forKey: .borders)
         try container.encode(nativeName, forKey: .nativeName)
@@ -122,7 +123,7 @@ class CountryModel: NSManagedObject, Codable {
         try container.encode(languages, forKey: .languages)
         try container.encode(translations, forKey: .translations)
         try container.encode(flag, forKey: .flag)
-       // try container.encode(regionalBlocs, forKey: .regionalBlocs)
+        //try container.encode(regionalBlocs, forKey: .regionalBlocs)
         try container.encode(cioc, forKey: .cioc)
         
     }
